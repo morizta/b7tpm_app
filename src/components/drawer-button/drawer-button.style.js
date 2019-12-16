@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   icon: {
-    color: 'white',
+    color: 'black',
     paddingLeft: 15,
   },
   drawer: {

@@ -13,11 +13,14 @@ import {
   TouchableOpacity,
   Picker,
   Alert,
+  PermissionsAndroid,
+  Platform,
   // Icon,
 } from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob'
 import {Images} from '../../../assets';
 
-import { RNHTMLtoPDF } from 'react-native-html-to-pdf';
+// import { RNHTMLtoPDF } from 'react-native-html-to-pdf';
 
 import {
   Logo,
@@ -180,14 +183,82 @@ class TPMForm extends React.Component {
   }
 
   async _createPDF() {
-    const options = {
-      html: '<h1>PDF TEST</h1>',
-      fileName: 'test',
-      directory: 'Documents',
+    var api = '';
+
+    let param = JSON.stringify({
+      id: this.state.id,
+    });
+    if (this.state.selecttpm === 1) {
+      api = `${api_endpoint}tpmwhite/exportpdf.php`;
+    } else if (this.state.selecttpm === 2) {
+      api = `${api_endpoint}tpmred/exportpdf.php`;
+    }
+    console.log('Di Submit', api);
+    axios
+      .post(api, param)
+      .then(response => {
+        console.log(response);
+        this._downloadFile(
+          response.data.data,
+          this.state.selecttpm === 1 ? 'tpmwhite' : 'tpmred',
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  _downloadFile(filename, type){
+    var url = `${api_endpoint}` + type + `/generatedfile/` + filename;
+    // var ext = this.extention(url);
+    // ext = '.' + ext[0];
+
+    const {config, fs} = RNFetchBlob;
+    let docDir = fs.dirs.DownloadDir;
+    let options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        useDownloadManager: true,
+        notification: true,
+        path: docDir + '/' + filename,
+        description: 'Pdf',
+      },
     };
-    let file = await RNHTMLtoPDF.convert(options);
-    console.log(file.filePath);
-    // Alert.alert('FilePath', file.filePath);
+    config(options).fetch('GET', url).then((res) => {
+        Alert.alert('Success Downloaded');
+      });
+  }
+
+  onPress = () => {
+    var that = this;
+    //Checking for the permission just after component loaded
+    async function requestStoragePerm() {
+      //Calling the permission function
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'B7TPM App Storage Permission',
+          message: 'B7TPM App needs access to your access your storage ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        that._createPDF();
+      } else {
+        Alert.alert('CAMERA Permission Denied.', '');
+      }
+    }
+    if (Platform.OS === 'android') {
+      requestStoragePerm();
+    } else {
+      this._createPDF();
+    }
+  };
+
+  extention(filename){
+    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
   }
 
   _onChangeTPM(item) {
@@ -321,22 +392,22 @@ class TPMForm extends React.Component {
                 value={this.state.penanggulangan}
                 onChangeText={text => this.setState({penanggulangan: text})}
               />
-              <View style={styles.buttonSubmitContainer}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                {/* <Text>{'\n'}</Text> */}
+                <Button
+                  title="Print"
+                  containerStyle={styles.enterOTPButton}
+                  textStyle={styles.textButtonSubmit}
+                  // containerStyle={styles.enterButton}
+                  onPress={() => this.onPress()}
+                  //loading={this.state.enableLogin}
+                />
                 <Button
                   title="Simpan"
                   containerStyle={styles.enterOTPButton}
                   textStyle={styles.textButtonSubmit}
                   // containerStyle={styles.enterButton}
                   onPress={() => this._submit()}
-                  //loading={this.state.enableLogin}
-                />
-                <Text>{'\n'}</Text>
-                <Button
-                  title="Print"
-                  containerStyle={styles.enterOTPButton}
-                  textStyle={styles.textButtonSubmit}
-                  // containerStyle={styles.enterButton}
-                  onPress={() => this._createPDF()}
                   //loading={this.state.enableLogin}
                 />
               </View>

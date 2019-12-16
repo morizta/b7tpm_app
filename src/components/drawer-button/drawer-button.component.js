@@ -3,16 +3,16 @@ import {Button} from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import styles from './drawer-button.style';
-import {DrawerActions} from 'react-navigation-drawer';
+// import {DrawerActions} from 'react-navigation-drawer';
 
 const DrawerButton = ({navigation}) => (
   <Button
     style={styles.drawer}
     transparent
     onPress={() => {
-      navigation.dispatch(DrawerActions.toggleDrawer());
+      navigation.navigate('Home');
     }}>
-    <Icon name="bars" size={25} style={styles.icon} />
+    <Icon name="arrow-left" size={25} style={styles.icon} />
   </Button>
 );
 

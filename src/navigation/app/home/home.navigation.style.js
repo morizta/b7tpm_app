@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 
-import { Colors } from '../../../styles'
+import {Colors} from '../../../styles';
 
 export default StyleSheet.create({
   header: {
@@ -9,6 +9,6 @@ export default StyleSheet.create({
     shadowOpacity: 0, // remove shadow on iOS
   },
   tabBar: {
-    backgroundColor: Colors.SubHeader
-  }
-})
+    backgroundColor: Colors.SubHeader,
+  },
+});

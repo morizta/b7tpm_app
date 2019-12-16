@@ -7,7 +7,7 @@ import styles from './header-title.style';
 const HeaderTitle = ({style, text, image}) => (
   <View style={styles.wrapper}>
     <Text style={[styles.title, style]}>
-      {image ? <Image source={image} style={styles.image} /> : null}
+      {/* {image ? <Image source={image} style={styles.image} /> : null} */}
       {text ? text.toUpperCase() : ''}
     </Text>
   </View>

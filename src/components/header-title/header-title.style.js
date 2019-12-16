@@ -7,13 +7,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    color: Colors.Netral,
-    //textAlign: 'center',
+    color: Colors.Primary,
+    // textAlign: 'center',
     textAlignVertical: 'center',
     fontSize: Fonts.Large,
     fontWeight: '500',
     flex: 1,
-    //paddingRight: 30
+    // paddingRight: 30,
   },
   image: {
     width: 30,
