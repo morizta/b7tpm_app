@@ -13,6 +13,7 @@ import SideBar from './sidebar';
 import BackButton from './back-button';
 import Accordion from './accordion';
 import DatePickers from './datepickers';
+import LogoutButton from './logout-button';
 // import PdfViewer from './pdf-viewer';
 
 export {
@@ -31,5 +32,6 @@ export {
   Accordion,
   TextBox2,
   DatePickers,
+  LogoutButton,
   // PdfViewer,
 };

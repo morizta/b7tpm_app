@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import PropTypes from 'prop-types';
 
+import {USER_ACTION} from '../../actions';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import axios from 'axios';
+
+import {api_endpoint} from '../../../config';
 import {
   Logo,
   Button,
@@ -47,6 +52,20 @@ class Authentication extends React.Component {
    *
    * @returns {JSX} Authentication screen component tree
    */
+  componentDidMount() {
+    // const logout = this.props.navigation.getParam('param');
+    // console.log('Logout', logout);
+    AsyncStorage.getItem('auth').then(value => {
+      console.log('value', value);
+      if (value !== null) {
+        this.props.navigation.navigate('App');
+      } else {
+        this.setState({
+          loading: false,
+        });
+      }
+    });
+  }
 
   gotoForgetPassword(client) {
     this.props.navigation.navigate('App');
@@ -58,8 +77,29 @@ class Authentication extends React.Component {
 
   initSignIn(client) {
     console.log('Di Submit', this.state);
+    axios
+      .post(
+        `${api_endpoint}users/login.php`,
+        JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        }),
+      )
+      .then(response => {
+        console.log(response);
+        const empString = JSON.stringify(response.data.data);
+        AsyncStorage.setItem('auth', empString);
+        this.props.updateUser(response.data.data);
+        this.setState({
+          user: empString,
+        });
 
-    this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('App');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // this.props.navigation.navigate('Home');
     // fetch('http://192.168.1.9/B7TPMAPI/apis/users/login.php', {
     //   method: 'POST',
     //   headers: {
@@ -152,4 +192,26 @@ class Authentication extends React.Component {
   }
 }
 
-export default Authentication;
+const mapStateToProps = state => ({
+  app: state.app,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateUser: user => {
+    return dispatch({
+      type: USER_ACTION.UPDATE_USER,
+      payload: {user},
+    });
+  },
+  updateSession: session => {
+    return dispatch({
+      type: USER_ACTION.UPDATE_SESSION,
+      payload: {session},
+    });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Authentication);

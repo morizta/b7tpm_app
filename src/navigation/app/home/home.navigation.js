@@ -7,7 +7,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 
 import {createAppContainer} from 'react-navigation';
 
-import {HeaderTitle, DrawerButton} from '../../../components';
+import {AsyncStorage, Alert} from 'react-native';
+import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
 import {Home} from '../../../containers';
 
 import styles from './home.navigation.style';
@@ -25,7 +26,7 @@ const RootStack = createStackNavigator(
         // headerLeft: <TouchableOpacity  onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
         //   <MenuImage style='styles.bar' navigation={navigation}/>
         // </TouchableOpacity>
-        // headerRight: <NavBarNotificationIcon onPress={() => navigation.navigate('Notification')} />
+        headerRight: <LogoutButton navigation={navigation} />,
       }),
     },
   },
