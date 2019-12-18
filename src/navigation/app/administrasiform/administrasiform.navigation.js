@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
-import {HeaderTitle, DrawerButton} from '../../../components';
+import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
 import {AdministrasiForm} from '../../../containers';
 import styles from './administrasiform.style';
 
@@ -16,6 +16,7 @@ const RootStack = createStackNavigator(
       name: 'app.screen.administrasiform',
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderTitle text="Administrasi Form" />,
+        headerRight: <LogoutButton navigation={navigation} />,
         headerLeft: <DrawerButton navigation={navigation} />,
       }),
     },

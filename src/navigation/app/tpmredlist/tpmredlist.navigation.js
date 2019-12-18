@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
-import {HeaderTitle, DrawerButton} from '../../../components';
+import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
 import {TPMRedList} from '../../../containers';
 import styles from './tpmredlist.navigation.style';
 
@@ -16,6 +16,7 @@ const RootStack = createStackNavigator(
       name: 'app.screen.tpmredlist',
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderTitle text="TPM Red Tag List" />,
+        headerRight: <LogoutButton navigation={navigation} />,
         headerLeft: <DrawerButton navigation={navigation} />,
       }),
     },

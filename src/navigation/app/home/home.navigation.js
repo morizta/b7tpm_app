@@ -21,11 +21,6 @@ const RootStack = createStackNavigator(
       screen: HomeScreen,
       name: 'app.screen.home',
       navigationOptions: ({navigation}) => ({
-        // headerTitle: <HeaderTitle text="B7TPM Application" />,
-        // headerLeft: <DrawerButton navigation={navigation} />,
-        // headerLeft: <TouchableOpacity  onPress={() => {navigation.dispatch(DrawerActions.toggleDrawer())} }>
-        //   <MenuImage style='styles.bar' navigation={navigation}/>
-        // </TouchableOpacity>
         headerRight: <LogoutButton navigation={navigation} />,
       }),
     },

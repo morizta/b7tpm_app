@@ -28,9 +28,9 @@ export default StyleSheet.create({
   },
   content: {
     justifyContent: 'center',
-    marginBottom: 25,
-    marginRight: 15,
-    marginLeft: 15,
+    marginBottom: 100,
+    marginRight: 30,
+    marginLeft: 30,
   },
   footer: {
     alignItems: 'center',
@@ -40,12 +40,14 @@ export default StyleSheet.create({
   },
   wrapper: {
     backgroundColor: 'transparent',
-    padding: 40,
-    marginTop: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
+    paddingBottom: 25,
+    paddingTop: 10,
   },
   text: {
     fontSize: 11,
-    color: '#000',
+    color: '#fff',
   },
   enterButton: {
     alignSelf: 'flex-end',
@@ -70,15 +72,19 @@ export default StyleSheet.create({
     width: '100%',
   },
   enterOTPButton: {
-    backgroundColor: 'transparent',
     width: '100%',
+    backgroundColor: 'transparent',
     textAlign: 'center',
-    borderColor: '#fff',
+    marginRight: 0,
+    marginLeft: 0,
+    height: 50,
     borderRadius: 2,
     borderWidth: 1,
+    borderColor: '#fff',
+    resizeMode: 'contain',
   },
   buttonSubmitContainer: {
-    marginBottom: 15,
+    marginTop: 30,
     width: '100%',
   },
   textButtonSubmit: {
@@ -98,15 +104,5 @@ export default StyleSheet.create({
     fontWeight: '600',
     // marginBottom:1,
     // marginTop:1
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    marginBottom: 30,
-    paddingRight: 20,
-  },
-  checkboxtTitle: {
-    marginLeft: 20,
-    color: '#fff',
-    textAlign: 'justify',
   },
 });

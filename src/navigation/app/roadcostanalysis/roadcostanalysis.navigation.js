@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
-import {HeaderTitle, DrawerButton} from '../../../components';
+import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
 import {RoadCostAnalysis} from '../../../containers';
 import styles from './roadcostanalysis.style';
 
@@ -15,6 +15,7 @@ const RootStack = createStackNavigator(
       screen: RoadCostAnalysisScreen,
       name: 'app.screen.roadcostanalysis',
       navigationOptions: ({navigation}) => ({
+        headerRight: <LogoutButton navigation={navigation} />,
         headerTitle: <HeaderTitle text="Road Cost Analysis Form" />,
         headerLeft: <DrawerButton navigation={navigation} />,
       }),

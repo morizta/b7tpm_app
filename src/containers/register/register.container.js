@@ -11,9 +11,11 @@ import {
   Wrapper,
   TextBox,
 } from '../../components';
+
+// import {CheckBox} from 'react-native-elements';
 import {Images} from '../../../assets';
 import styles from './register.style';
-import {View} from 'native-base';
+import {View, CheckBox} from 'native-base';
 import {
   Keyboard,
   Alert,
@@ -22,6 +24,7 @@ import {
   ImageBackground,
   AsyncStorage,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 /**
  * Authentication container conponent
@@ -40,6 +43,7 @@ class Register extends React.Component {
       loading: false,
       isModalVisible: true,
       isLoading: false,
+      checkedbox: false,
     };
   }
   /**
@@ -84,6 +88,14 @@ class Register extends React.Component {
       });
   }
 
+  _checkbox() {
+    if (this.state.checkedbox === true) {
+      this.setState({checkedbox: false});
+    } else {
+      this.setState({checkedbox: true});
+    }
+  }
+
   render() {
     return this.state.loading === true ? (
       <Loading />
@@ -96,24 +108,28 @@ class Register extends React.Component {
           <Content style={styles.content}>
             <TextBox
               name="user"
+              icon="user"
               placeholder="User Name"
               value={this.state.username}
               onChangeText={text => this.setState({username: text})}
             />
             <TextBox
               name="nik"
+              icon="archive"
               placeholder="NIK"
               value={this.state.nik}
               onChangeText={text => this.setState({nik: text})}
             />
             <TextBox
               name="email"
+              icon="at"
               placeholder="Email"
               value={this.state.email}
               onChangeText={text => this.setState({email: text})}
             />
             <TextBox
               name="pass"
+              icon="unlock-alt"
               placeholder="Password"
               secureTextEntry={true}
               value={this.state.password}
@@ -121,32 +137,46 @@ class Register extends React.Component {
             />
             <TextBox
               name="pass2"
+              icon="unlock-alt"
               placeholder="Confirm Password"
               secureTextEntry={true}
               value={this.state.password2}
               onChangeText={text => this.setState({password2: text})}
             />
-            {/* <Text onPress={() => console.log('1st')}>Dengan ini saya menyatakan bahwa data {'\n'} yang saya masukkan telah benar</Text> */}
+            <View style={styles.checkboxContainer}>
+              <CheckBox
+                center
+                title="Click Here"
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                onPress={() => this._checkbox()}
+                checked={this.state.checkedbox}
+              />
+              <TouchableOpacity>
+                <Text
+                  style={styles.checkboxtTitle}
+                  onPress={() => this._checkbox()}>
+                  Dengan ini saya menyatakan bahwa data yang saya masukkan telah
+                  benar
+                </Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.buttonSubmitContainer}>
               <Button
                 title="Daftar Sekarang"
                 containerStyle={styles.enterOTPButton}
                 textStyle={styles.textButtonSubmit}
-                // containerStyle={styles.enterButton}
                 onPress={() => this.initSignIn()}
-                //loading={this.state.enableLogin}
               />
             </View>
-            {/* <View style={styles.buttonSubmitContainer}>
+            <View style={styles.buttonSubmitContainer}>
               <Button
                 title="Sudah punya akun? Login"
                 containerStyle={styles.enterOTPButton}
                 textStyle={styles.textButtonSubmit}
-                // containerStyle={styles.enterButton}
-                onPress={() => this.initSignIn()}
-                //loading={this.state.enableLogin}
+                onPress={() => this.props.navigation.navigate('Auth')}
               />
-            </View> */}
+            </View>
           </Content>
           <Footer style={styles.footer}>
             <Text style={styles.text}>Version: 0.0.1</Text>

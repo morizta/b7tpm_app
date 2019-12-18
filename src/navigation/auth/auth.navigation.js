@@ -1,7 +1,7 @@
 import {createStackNavigator} from 'react-navigation-stack';
 
 import {createAppContainer} from 'react-navigation';
-import {Authentication, Register} from '../../containers';
+import {Authentication, Register, ForgotPassword} from '../../containers';
 
 const RootStack = createStackNavigator(
   {
@@ -16,6 +16,14 @@ const RootStack = createStackNavigator(
     Register: {
       screen: Register,
       name: 'auth.screen.register',
+      navigationOptions: {
+        header: null,
+        gesturesEnabled: false,
+      },
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      name: 'auth.screen.forgotpassword',
       navigationOptions: {
         header: null,
         gesturesEnabled: false,

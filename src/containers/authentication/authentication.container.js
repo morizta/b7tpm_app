@@ -68,7 +68,7 @@ class Authentication extends React.Component {
   }
 
   gotoForgetPassword(client) {
-    this.props.navigation.navigate('App');
+    this.props.navigation.navigate('ForgotPassword');
   }
 
   gotoRegister(client) {
@@ -99,38 +99,6 @@ class Authentication extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    // this.props.navigation.navigate('Home');
-    // fetch('http://192.168.1.9/B7TPMAPI/apis/users/login.php', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: this.state.username,
-    //     password: this.state.password,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(responseJson => {
-    //     console.log('Response Json', responseJson);
-    //     if (responseJson.message === 'User not available') {
-    //       Alert.alert('Login failed', 'User not found.');
-    //     } else {
-    //       // this.props.navigation.navigate('Home');
-    //       console.log('responseJson', responseJson.data[0]);
-    //       AsyncStorage.setItem('auth', JSON.stringify(responseJson.data[0]));
-    //       const auth = AsyncStorage.getItem('auth');
-    //       console.log('Isi Session Auth', auth);
-    //       //save session goto home menu
-    //     }
-    //     return;
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //     Alert.alert('Invalid Verification Code', error);
-    //     return;
-    //   });
   }
 
   render() {
@@ -158,18 +126,20 @@ class Authentication extends React.Component {
             />
             <TextBox
               name="pass"
-              icon="at"
+              icon="unlock-alt"
               placeholder="Password"
               secureTextEntry={true}
               value={this.state.password}
               onChangeText={text => this.setState({password: text})}
             />
             <TouchableOpacity>
-              <Text style={{color: '#fff'}} onPress={() => console.log('1st')}>
-                Forgot Password?
+              <Text
+                style={{color: '#fff'}}
+                onPress={() => this.gotoForgetPassword()}>
+                Lupa password?
               </Text>
               <Text style={{color: '#fff'}} onPress={() => this.gotoRegister()}>
-                Sign Up?
+                Daftar?
               </Text>
             </TouchableOpacity>
             <View style={styles.buttonSubmitContainer}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
-import {HeaderTitle, DrawerButton} from '../../../components';
+import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
 import {StatusForm} from '../../../containers';
 import styles from './statusform.style';
 
@@ -16,6 +16,7 @@ const RootStack = createStackNavigator(
       name: 'app.screen.statusform',
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderTitle text="Status Form" />,
+        headerRight: <LogoutButton navigation={navigation} />,
         headerLeft: <DrawerButton navigation={navigation} />,
       }),
     },

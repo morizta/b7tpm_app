@@ -7,6 +7,7 @@ import AdministrasiForm from './administrasiform';
 import TPMForm from './tpmform';
 import StatusForm from './statusform';
 import RoadCostAnalysis from './roadcostanalysis';
+import ForgotPassword from './forgotpassword';
 
 export {
   Authentication,
@@ -18,4 +19,5 @@ export {
   TPMForm,
   StatusForm,
   RoadCostAnalysis,
+  ForgotPassword,
 };
