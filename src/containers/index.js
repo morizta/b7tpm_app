@@ -8,6 +8,7 @@ import TPMForm from './tpmform';
 import StatusForm from './statusform';
 import RoadCostAnalysis from './roadcostanalysis';
 import ForgotPassword from './forgotpassword';
+import InformasiMesin from './informasimesin';
 
 export {
   Authentication,
@@ -20,4 +21,5 @@ export {
   StatusForm,
   RoadCostAnalysis,
   ForgotPassword,
+  InformasiMesin,
 };

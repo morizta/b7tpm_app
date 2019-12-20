@@ -26,7 +26,7 @@ project.xcworkspace
 #
 build/
 .idea
-.gradle
+# .gradle
 local.properties
 *.iml
 android/app/build/
@@ -65,4 +65,4 @@ coverage/
 
 *.lock
 *.bin
-*.jar
+# *.jar

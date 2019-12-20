@@ -17,7 +17,7 @@ import {
   Platform,
   // Icon,
 } from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob';
 import {Images} from '../../../assets';
 
 // import { RNHTMLtoPDF } from 'react-native-html-to-pdf';
@@ -39,6 +39,7 @@ import {List, ListItem, Item} from 'native-base';
 import {Table, Row} from 'react-native-table-component';
 import NumberFormat from 'react-number-format';
 import axios from 'axios';
+import ImagePicker from 'react-native-image-picker';
 
 import styles from './tpmform.style';
 // import {Item} from 'native-base';
@@ -68,6 +69,7 @@ class TPMForm extends React.Component {
     characterMax: 35,
     listtpm: [],
     selecttpm: 1,
+    photo: null,
   };
 
   componentDidMount() {
@@ -208,7 +210,7 @@ class TPMForm extends React.Component {
       });
   }
 
-  _downloadFile(filename, type){
+  _downloadFile(filename, type) {
     var url = `${api_endpoint}` + type + `/generatedfile/` + filename;
     // var ext = this.extention(url);
     // ext = '.' + ext[0];
@@ -224,7 +226,9 @@ class TPMForm extends React.Component {
         description: 'Pdf',
       },
     };
-    config(options).fetch('GET', url).then((res) => {
+    config(options)
+      .fetch('GET', url)
+      .then(res => {
         Alert.alert('Success Downloaded');
       });
   }
@@ -257,7 +261,7 @@ class TPMForm extends React.Component {
     }
   };
 
-  extention(filename){
+  extention(filename) {
     return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined;
   }
 
@@ -300,11 +304,23 @@ class TPMForm extends React.Component {
     }
   }
 
+  handleChoosePhoto = () => {
+    const options = {
+      noData: true,
+    };
+    ImagePicker.launchImageLibrary(options, response => {
+      if (response.uri) {
+        this.setState({photo: response});
+      }
+    });
+  };
+
   render() {
     // const {
     //   Shift
     // } = this.props.data
-
+    console.log('This State', this.state);
+    const {photo} = this.state;
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#2a7050" barStyle="light-content" />
@@ -392,7 +408,62 @@ class TPMForm extends React.Component {
                 value={this.state.penanggulangan}
                 onChangeText={text => this.setState({penanggulangan: text})}
               />
-              <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'center',
+                  // margin: 15,
+                  backgroundColor: 'silver',
+                  width: 250,
+                  height: 250,
+                  padding: 7.5,
+                }}>
+                {photo ? (
+                  <TouchableOpacity>
+                    <Image
+                      source={{uri: photo.uri}}
+                      style={{
+                        width: 230,
+                        height: 230,
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        alignSelf: 'center',
+                      }}
+                      onPress={() => {
+                        this.handleChoosePhoto();
+                      }}
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity>
+                    <Text
+                      onPress={() => {
+                        this.handleChoosePhoto();
+                      }}>
+                      Pilih Foto
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'center',
+                  marginTop: 15,
+                  marginBottom: 15,
+                }}>
+                <Button
+                  title={photo ? 'Ganti Foto' : 'Pilih Foto'}
+                  onPress={this.handleChoosePhoto}
+                />
+              </View>
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 {/* <Text>{'\n'}</Text> */}
                 <Button
                   title="Print"

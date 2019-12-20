@@ -8,6 +8,7 @@ import TPMRedListStack from './tpmredlist';
 import TPMWhiteListStack from './tmpwhitelist';
 import StatusFormStack from './statusform';
 import RoadCostAnalysisStack from './roadcostanalysis';
+import InformasiMesinStack from './informasimesin';
 
 const RootScreen = createStackNavigator(
   {
@@ -38,7 +39,11 @@ const RootScreen = createStackNavigator(
     RoadCostAnalysis: {
       screen: RoadCostAnalysisStack,
       name: 'app.screen.roadcostanalysis',
-    }
+    },
+    InformasiMesin: {
+      screen: InformasiMesinStack,
+      name: 'app.screen.informasimesin',
+    },
   },
   {
     initialRouteName: 'Home',
