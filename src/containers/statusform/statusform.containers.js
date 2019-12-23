@@ -279,127 +279,18 @@ class StatusForm extends React.Component {
                               />
                             </Table>
                           </View>
-                          <View style={styles.tableContainer}>
-                            <View>
-                              <View style={styles.buttonContainerDetail}>
-                                <Button
-                                  style={styles.rightButtonDetail}
-                                  onPress={() => {
-                                    this.props.navigation.navigate('TPMForm', {
-                                      id: data.id,
-                                      tpm: this.state.selecttpm,
-                                    });
-                                  }}>
-                                  <Text style={styles.buttonDetailTexts}>
-                                    Edit
-                                  </Text>
-                                </Button>
-                              </View>
-                            </View>
+                          <View style={styles.buttonContainerDetail}>
+                            <Button
+                              style={styles.rightButtonDetail}
+                              onPress={() => {
+                                this.props.navigation.navigate('TPMForm', {
+                                  id: data.id,
+                                  tpm: this.state.selecttpm,
+                                });
+                              }}>
+                              <Text style={styles.buttonDetailTexts}>Edit</Text>
+                            </Button>
                           </View>
-                          {/* <Accordion>
-                            <View style={styles.tableContainer}>
-                              <Table
-                                borderStyle={styles.tableBorder}
-                                style={styles.tableLeft}>
-                                <Row
-                                  style={styles.tableRowHeaderDetail}
-                                  widthArr={[125]}
-                                  data={['']}
-                                />
-                                <Row
-                                  style={styles.tableRowEven}
-                                  textStyle={styles.tableRowText}
-                                  widthArr={[125]}
-                                  data={['Bagian Mesin']}
-                                />
-                                <Row
-                                  widthArr={[125]}
-                                  textStyle={styles.tableRowText}
-                                  data={['Deskripsi']}
-                                />
-                                {this.state.selecttpm === 2 ? (
-                                  <Row
-                                    style={styles.tableRowEven}
-                                    textStyle={styles.tableRowText}
-                                    widthArr={[125]}
-                                    data={['PIC Follow Up']}
-                                  />
-                                ) : (
-                                  <Row />
-                                )}
-                                <Row
-                                  widthArr={[125]}
-                                  textStyle={styles.tableRowText}
-                                  data={['Due Date']}
-                                />
-                                <Row
-                                  style={styles.tableRowEven}
-                                  textStyle={styles.tableRowText}
-                                  widthArr={[125]}
-                                  data={['Status']}
-                                />
-                                <Row
-                                  style={styles.tableRowFooter}
-                                  widthArr={[125]}
-                                  data={['']}
-                                />
-                              </Table>
-
-                              <Table
-                                borderStyle={styles.tableBorder}
-                                style={styles.tableRight}>
-                                <Row
-                                  style={styles.tableRowHeaderDetail}
-                                  widthArr={[this.state.tableWidth]}
-                                  data={['']}
-                                />
-                                <Row
-                                  style={styles.tableRowEven}
-                                  textStyle={styles.tableRowValue}
-                                  widthArr={[this.state.tableWidth]}
-                                  data={[data.bagianmesin]}
-                                />
-                                <Row
-                                  widthArr={[this.state.tableWidth]}
-                                  textStyle={styles.tableRowValue}
-                                  data={[data.deskripsi]}
-                                />
-                                {this.state.selecttpm === 2 ? (
-                                  <Row
-                                    widthArr={[this.state.tableWidth]}
-                                    textStyle={styles.tableRowValue}
-                                    style={styles.tableRowEven}
-                                    data={[data.picfollowup]}
-                                  />
-                                ) : (
-                                  <Row />
-                                )}
-                                <Row
-                                  widthArr={[this.state.tableWidth]}
-                                  textStyle={styles.tableRowValue}
-                                  data={[
-                                    data.duedate
-                                      ? moment(data.tanggalpemasangan).format(
-                                          'DD MMM YYYY HH:MM',
-                                        )
-                                      : '-',
-                                  ]}
-                                />
-                                <Row
-                                  widthArr={[this.state.tableWidth]}
-                                  textStyle={styles.tableRowValue}
-                                  style={styles.tableRowEven}
-                                  data={[data.status]}
-                                />
-                                <Row
-                                  style={styles.tableRowFooter}
-                                  widthArr={[this.state.tableWidth]}
-                                  data={['']}
-                                />
-                              </Table>
-                            </View>
-                          </Accordion> */}
                         </View>
                       </ListItem>
                     );

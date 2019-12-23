@@ -369,7 +369,9 @@ class AdministrasiForm extends React.Component {
 
           <Footer>
             <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
-              <Text style={styles.footerText}>Copy Right ©2019 B7TPM App by Dimas Aji</Text>
+              <Text style={styles.footerText}>
+                Copy Right ©2019 B7TPM App by Dimas Aji
+              </Text>
             </View>
           </Footer>
         </View>

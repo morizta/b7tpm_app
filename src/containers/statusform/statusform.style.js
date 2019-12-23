@@ -63,9 +63,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    // marginLeft: 15,
     marginBottom: 5,
-    //marginLeft: 30,
     width: '100%',
   },
   headerContentDetailTexts: {
@@ -74,15 +72,17 @@ export default StyleSheet.create({
     color: 'white',
   },
   buttonDetailTexts: {
+    textAlign: 'center',
     fontSize: 12,
     fontWeight: '400',
     color: 'white',
+    width: '100%',
   },
   rightButtonDetail: {
     height: 25,
     backgroundColor: Colors.Turtoise, //'#2a7050',
     width: 100,
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
     alignItems: 'center',
     alignContent: 'center',
   },
