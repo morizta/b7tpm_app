@@ -21,6 +21,7 @@ const RootStack = createStackNavigator(
       screen: HomeScreen,
       name: 'app.screen.home',
       navigationOptions: ({navigation}) => ({
+        // headerLeft: <DrawerButton navigation={navigation} />,
         headerRight: <LogoutButton navigation={navigation} />,
       }),
     },

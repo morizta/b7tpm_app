@@ -52,7 +52,9 @@ class Accordion extends React.Component {
               style={styles.rightButton}
               block
               success
-              onPress={this._toggle}>
+              onPress={() => {
+                this.props.navigation.navigate('TPMForm');
+              }}>
               <Text style={styles.headerContentDetailText}>Edit</Text>
             </Button>
           )}

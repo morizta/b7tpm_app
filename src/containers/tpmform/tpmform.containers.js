@@ -199,7 +199,7 @@ class TPMForm extends React.Component {
     axios
       .post(api, param)
       .then(response => {
-        console.log(response);
+        console.log('Response export pdf', response);
         this._downloadFile(
           response.data.data,
           this.state.selecttpm === 1 ? 'tpmwhite' : 'tpmred',

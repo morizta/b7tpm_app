@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, Image, AsyncStorage} from 'react-native';
 import {Text, List, ListItem} from 'native-base';
-import {DrawerActions} from 'react-navigation';
+import {DrawerActions} from 'react-navigation-drawer';
 import styles from './sidebar.style';
 import {Images} from '../../../assets';
 
