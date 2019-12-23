@@ -16,7 +16,10 @@ const DatePickers = ({
   color,
   secureTextEntry,
   icon,
+  enabled,
 }) => {
+  const disabled = enabled ? false : true;
+  // console.log('Disable', disabled);
   return (
     <View>
       <View style={styles.textView}>
@@ -38,6 +41,7 @@ const DatePickers = ({
           date={value}
           mode="date"
           placeholder={placeholder}
+          disabled={disabled}
           format="YYYY-MM-DD"
           confirmBtnText="Ok"
           cancelBtnText="Batal"

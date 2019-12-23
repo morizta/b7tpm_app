@@ -15,6 +15,7 @@ const TextBox2 = ({
   color,
   secureTextEntry,
   icon,
+  enabled,
 }) => {
   return (
     <View>
@@ -31,6 +32,7 @@ const TextBox2 = ({
           placeholder={placeholder}
           value={value}
           onChangeText={onChangeText}
+          editable={enabled}
         />
       </View>
       <Text style={styles.error}>{error}</Text>

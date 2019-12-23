@@ -70,11 +70,27 @@ class TPMForm extends React.Component {
     listtpm: [],
     selecttpm: 1,
     photo: null,
+    isdetail: true,
+    enabled: false,
   };
 
   componentDidMount() {
     var Id = this.props.navigation.getParam('id');
     var SelectTpm = this.props.navigation.getParam('tpm');
+    var segment = this.props.navigation.getParam('segment');
+    var mode = this.props.navigation.getParam('mode');
+
+    if (mode && mode === 'Details') {
+      this.setState({
+        isdetail: true,
+        enabled: false,
+      });
+    } else {
+      this.setState({
+        isdetail: false,
+        enabled: true,
+      });
+    }
     // console.log('ID', Id)
 
     var api = '';
@@ -98,44 +114,10 @@ class TPMForm extends React.Component {
           tableWidth: 168,
           characterMax: 35,
         });
-        // this.setState({
-        //   listtpm: response.data.data,
-        // });
-        // this._navigateTo('App')
       })
       .catch(err => {
         console.log(err);
       });
-    // fetch(`${api_endpoint}tpmred/get.php`, {
-    //   method: 'GET',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(response => response.json())
-    //   .then(responseJson => {
-    //     console.log('Response Json', responseJson);
-    //     this.setState({
-    //       listtpm: responseJson.data,
-    //     });
-    //     // if (responseJson.message === 'User not available') {
-    //     //   Alert.alert('Login failed', 'User not found.');
-    //     // } else {
-    //     //   // this.props.navigation.navigate('Home');
-    //     //   console.log('responseJson', responseJson.data[0]);
-    //     //   AsyncStorage.setItem('auth', JSON.stringify(responseJson.data[0]));
-    //     //   const auth = AsyncStorage.getItem('auth');
-    //     //   console.log('Isi Session Auth', auth);
-    //     //   //save session goto home menu
-    //     // }
-    //     return;
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //     // Alert.alert('Invalid Verification Code', error);
-    //     return;
-    //   });
   }
 
   _submit() {
@@ -328,6 +310,7 @@ class TPMForm extends React.Component {
           <ScrollView>
             <Content style={styles.content}>
               <Picker
+                enabled={this.state.enabled}
                 mode={'dropdown'}
                 selectedValue={this.state.selecttpm}
                 style={{
@@ -347,30 +330,35 @@ class TPMForm extends React.Component {
                 <Picker.Item label="TPM Red List" value={2} />
               </Picker>
               <TextBox2
+                enabled={this.state.enabled}
                 name="Nomor Kontrol"
                 placeholder="Nomor Kontrol"
                 value={this.state.nokontrol}
                 onChangeText={text => this.setState({nokontrol: text})}
               />
               <TextBox2
+                enabled={this.state.enabled}
                 name="Bagian Mesin"
                 placeholder="Bagian Mesin"
                 value={this.state.bagianmesin}
                 onChangeText={text => this.setState({bagianmesin: text})}
               />
               <TextBox2
+                enabled={this.state.enabled}
                 name="Dipasang Oleh"
                 placeholder="Dipasang Oleh"
                 value={this.state.dipasangoleh}
                 onChangeText={text => this.setState({dipasangoleh: text})}
               />
               <DatePickers
+                enabled={this.state.enabled}
                 name="Tanggal Pemasangan"
                 placeholder="Tanggal Pemasangan"
                 value={this.state.tanggalpemasangan}
                 onDateChange={text => this.setState({tanggalpemasangan: text})}
               />
               <TextBox2
+                enabled={this.state.enabled}
                 name="Deskripsi"
                 placeholder="Deskripsi"
                 value={this.state.deskripsi}
@@ -378,6 +366,7 @@ class TPMForm extends React.Component {
               />
               {this.state.selecttpm === 2 ? (
                 <TextBox2
+                  enabled={this.state.enabled}
                   name="Nomor Work Request"
                   placeholder="Nomor Work Request"
                   value={this.state.noworkrequest}
@@ -388,6 +377,7 @@ class TPMForm extends React.Component {
               )}
               {this.state.selecttpm === 2 ? (
                 <TextBox2
+                  enabled={this.state.enabled}
                   name="PIC Follow Up"
                   placeholder="PIC Follow Up"
                   value={this.state.picfollowup}
@@ -397,12 +387,14 @@ class TPMForm extends React.Component {
                 <View />
               )}
               <DatePickers
+                enabled={this.state.enabled}
                 name="Due Date"
                 placeholder="Due Date"
                 value={this.state.duedate}
                 onDateChange={text => this.setState({duedate: text})}
               />
               <TextBox2
+                enabled={this.state.enabled}
                 name="Penanggulangan"
                 placeholder="Penanggulangan"
                 value={this.state.penanggulangan}
@@ -443,7 +435,7 @@ class TPMForm extends React.Component {
                       onPress={() => {
                         this.handleChoosePhoto();
                       }}>
-                      Pilih Foto
+                      {this.state.isdetail ? 'Tidak ada Foto' : 'Pilih Foto'}
                     </Text>
                   </TouchableOpacity>
                 )}
@@ -457,14 +449,17 @@ class TPMForm extends React.Component {
                   marginTop: 15,
                   marginBottom: 15,
                 }}>
-                <Button
-                  title={photo ? 'Ganti Foto' : 'Pilih Foto'}
-                  onPress={this.handleChoosePhoto}
-                />
+                {!this.state.isdetail ? (
+                  <Button
+                    title={photo ? 'Ganti Foto' : 'Pilih Foto'}
+                    onPress={this.handleChoosePhoto}
+                  />
+                ) : (
+                  <View />
+                )}
               </View>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                {/* <Text>{'\n'}</Text> */}
                 <Button
                   title="Print"
                   containerStyle={styles.enterOTPButton}
@@ -473,14 +468,18 @@ class TPMForm extends React.Component {
                   onPress={() => this.onPress()}
                   //loading={this.state.enableLogin}
                 />
-                <Button
-                  title="Simpan"
-                  containerStyle={styles.enterOTPButton}
-                  textStyle={styles.textButtonSubmit}
-                  // containerStyle={styles.enterButton}
-                  onPress={() => this._submit()}
-                  //loading={this.state.enableLogin}
-                />
+                {!this.state.isdetail ? (
+                  <Button
+                    title="Simpan"
+                    containerStyle={styles.enterOTPButton}
+                    textStyle={styles.textButtonSubmit}
+                    // containerStyle={styles.enterButton}
+                    onPress={() => this._submit()}
+                    //loading={this.state.enableLogin}
+                  />
+                ) : (
+                  <View />
+                )}
               </View>
             </Content>
           </ScrollView>

@@ -324,6 +324,28 @@ export default StyleSheet.create({
     width: 110,
     resizeMode: 'stretch',
   },
+  buttonContainerDetail: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 5,
+    width: '100%',
+  },
+  buttonDetailTexts: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'white',
+    width: '100%',
+  },
+  rightButtonDetail: {
+    height: 25,
+    backgroundColor: Colors.Turtoise, //'#2a7050',
+    width: 100,
+    alignSelf: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+  },
 });
 
 export const headerStyles = {
