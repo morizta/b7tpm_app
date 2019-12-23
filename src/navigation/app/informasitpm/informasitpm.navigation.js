@@ -2,18 +2,18 @@ import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
 import {HeaderTitle, DrawerButton, LogoutButton} from '../../../components';
-import {InformasiMesin} from '../../../containers';
-import styles from './informasimesin.navigation.style';
+import {InformasiTPM} from '../../../containers';
+import styles from './informasitpm.navigation.style';
 
-const InformasiMesinScreen = props => (
-  <InformasiMesin {...props} screenProps="current" />
+const InformasiTPMScreen = props => (
+  <InformasiTPM {...props} screenProps="current" />
 );
 
 const RootStack = createStackNavigator(
   {
-    InformasiMesin: {
-      screen: InformasiMesinScreen,
-      name: 'app.screen.informasimesin',
+    TPMWhiteList: {
+      screen: InformasiTPMScreen,
+      name: 'app.screen.informasitpm',
       navigationOptions: ({navigation}) => ({
         headerRight: <LogoutButton navigation={navigation} />,
         headerTitle: <HeaderTitle text="Informasi Mesin" />,

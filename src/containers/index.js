@@ -9,6 +9,7 @@ import StatusForm from './statusform';
 import RoadCostAnalysis from './roadcostanalysis';
 import ForgotPassword from './forgotpassword';
 import InformasiMesin from './informasimesin';
+import InformasiTPM from './informasitpm';
 
 export {
   Authentication,
@@ -22,4 +23,5 @@ export {
   RoadCostAnalysis,
   ForgotPassword,
   InformasiMesin,
+  InformasiTPM,
 };

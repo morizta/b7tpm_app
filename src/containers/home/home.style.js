@@ -59,7 +59,8 @@ export default StyleSheet.create({
     elevation: 2,
   },
   menuScrollView: {
-    // marginBottom: 20,
+    // marginBottom: 180,
+    // backgroundColor: 'red',
   },
   footerText: {
     color: 'white',

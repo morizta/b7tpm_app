@@ -7,7 +7,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   title: {
-    color: Colors.Primary,
+    color: Colors.Turtoise,
     // textAlign: 'center',
     textAlignVertical: 'center',
     fontSize: Fonts.Large,

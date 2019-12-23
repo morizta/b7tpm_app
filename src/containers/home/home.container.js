@@ -99,93 +99,86 @@ class Home extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.menuScrollView}>
+        <StatusBar backgroundColor="#2a7050" barStyle="light-content" />
+        <View style={styles.menuContainerBoxContent}>
           <Header style={styles.logo}>
             <Logo
               text={'B7 Engineering app by Dimas Aji'}
               image={Images.logo_bintangtoedjoe}
             />
           </Header>
-          <View style={styles.menuContainerBox}>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('AdministrasiForm')
-              }>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_claim_staus}
-              />
-              <Text style={styles.menuTitle}>Administrasi Form</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() => this.props.navigation.navigate('TPMForm')}>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_claim_staus}
-              />
-              <Text style={styles.menuTitleLog}>TPM Form</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() => this.props.navigation.navigate('StatusForm')}>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_claim_staus}
-              />
-              <Text style={styles.menuTitle}>Status Form</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() =>
-                this.props.navigation.navigate('RoadCostAnalysis')
-              }>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_claim_staus}
-              />
-              <Text style={styles.menuTitle}>RCA (Road Cost Analysis)</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() => this.props.navigation.navigate('Provider')}>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_handbook}
-              />
-              <Text style={styles.menuTitle}>Informasi TPM</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.menuItem}
-              onPress={() => this.props.navigation.navigate('Provider')}>
-              <Image
-                style={styles.menuImage}
-                source={Images.homepage_icon_handbook}
-              />
-              <Text style={styles.menuTitle}>Informasi Mesin</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
+          <ScrollView style={styles.menuScrollView}>
+            <View style={styles.menuContainerBox}>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() =>
+                  this.props.navigation.navigate('AdministrasiForm')
+                }>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_claim_staus}
+                />
+                <Text style={styles.menuTitle}>Administrasi Form</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => this.props.navigation.navigate('TPMForm')}>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_claim_staus}
+                />
+                <Text style={styles.menuTitleLog}>TPM Form</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => this.props.navigation.navigate('StatusForm')}>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_claim_staus}
+                />
+                <Text style={styles.menuTitle}>Status Form</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() =>
+                  this.props.navigation.navigate('RoadCostAnalysis')
+                }>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_claim_staus}
+                />
+                <Text style={styles.menuTitle}>RCA (Road Cost Analysis)</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() => this.props.navigation.navigate('InformasiTPM')}>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_handbook}
+                />
+                <Text style={styles.menuTitle}>Informasi TPM</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.menuItem}
+                onPress={() =>
+                  this.props.navigation.navigate('InformasiMesin')
+                }>
+                <Image
+                  style={styles.menuImage}
+                  source={Images.homepage_icon_handbook}
+                />
+                <Text style={styles.menuTitle}>Informasi Mesin</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </View>
         <Footer>
-          <View style={{flex: 1, flexDirection: 'row'}}>
-            <Text style={styles.versionText}>
-              Version: {this.props.version}{' '}
-              {this.props.configType === '' ? '' : '('} {this.props.configType}{' '}
-              {this.props.configType === '' ? '' : ')'}
+          <View style={{flex: 1, flexDirection: 'row', width: '100%'}}>
+            <Text style={styles.footerText}>
+              Copy Right ©2019 B7TPM App by Dimas Aji
             </Text>
-            <Text style={styles.footerText}>© 2019 Dimas Aji</Text>
           </View>
         </Footer>
-        {/* <Wrapper>
-
-          <Content style={styles.content}>
-
-            <Text style={{ color: 'black', textAlign: 'center', fontSize: 18 }}>Welcome : {this.props.employee.employeename}
-            </Text>
-
-          </Content>
-        </Wrapper> */}
       </View>
     );
   }

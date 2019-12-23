@@ -290,7 +290,7 @@ class StatusForm extends React.Component {
                                       tpm: this.state.selecttpm,
                                     });
                                   }}>
-                                  <Text style={styles.headerContentDetailTexts}>
+                                  <Text style={styles.buttonDetailTexts}>
                                     Edit
                                   </Text>
                                 </Button>

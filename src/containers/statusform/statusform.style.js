@@ -73,12 +73,16 @@ export default StyleSheet.create({
     fontWeight: '400',
     color: 'white',
   },
+  buttonDetailTexts: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: 'white',
+  },
   rightButtonDetail: {
     height: 25,
-    backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise, //'#2a7050',
     width: 100,
-    marginLeft: 25,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     alignItems: 'center',
     alignContent: 'center',
   },
@@ -88,7 +92,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: 5,
     marginLeft: 5,
-    //alignContent: 'center',
+    alignContent: 'center',
     //alignSelf: 'center',
     //alignItems: 'center',
     textAlign: 'center',
@@ -151,17 +155,18 @@ export default StyleSheet.create({
   },
   tableRowText: {
     fontSize: 12,
-    color: '#2a7050',
+    color: Colors.Turtoise, //'#2a7050',
   },
   tableRowValue: {
     fontSize: 12,
   },
   tableRowHeader: {
-    backgroundColor: '#2a7050',
+    // backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise,
     height: 8,
   },
   tableRowHeaderDetail: {
-    backgroundColor: '#d3e0d9',
+    backgroundColor: Colors.Turtoise,
     height: 4,
   },
   tableRowFooter: {
@@ -255,7 +260,7 @@ export default StyleSheet.create({
   },
   rightButton: {
     height: 25,
-    backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise,
     width: 130,
     alignSelf: 'center',
     alignItems: 'center',
@@ -296,7 +301,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   menuContainerBoxContent: {
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 100,
     alignContent: 'center',
     alignSelf: 'center',

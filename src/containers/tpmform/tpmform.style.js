@@ -9,6 +9,7 @@ export default StyleSheet.create({
     marginBottom: 100,
     marginRight: 30,
     marginLeft: 30,
+    // backgroundColor: 'red'
   },
   container: {
     flex: 1,
@@ -279,13 +280,14 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   menuContainerBoxContent: {
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 100,
     alignContent: 'center',
     alignSelf: 'center',
     width: '100%',
     height: '100%',
-    // backgroundColor: 'green'
+    // paddingBottom: 10,
+    // backgroundColor: 'red'
   },
   menuContainerBox: {
     paddingTop: 20,

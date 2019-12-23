@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {Colors} from '../../styles';
 
 export default StyleSheet.create({
   icon: {
@@ -11,16 +12,25 @@ export default StyleSheet.create({
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     marginBottom: 5,
     //marginLeft: 30,
     width: '100%',
+    // backgroundColor: 'blue',
   },
   rightButton: {
     height: 25,
-    backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise, //'#2a7050',
     width: 100,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    alignItems: 'center',
+    alignContent: 'center',
+  },
+  leftButton: {
+    height: 25,
+    backgroundColor: Colors.Turtoise, //'#2a7050',
+    width: 100,
+    alignSelf: 'flex-start',
     alignItems: 'center',
     alignContent: 'center',
   },

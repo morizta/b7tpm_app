@@ -4,7 +4,7 @@ export default StyleSheet.create({
   wrapper: {
     marginTop: 10,
     height: 20,
-    bottom: 10,
+    bottom: 0,
     position: 'absolute',
     justifyContent: 'center',
     alignSelf: 'center',

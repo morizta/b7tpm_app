@@ -3,17 +3,23 @@ import PropTypes from 'prop-types';
 import {Button} from 'native-base';
 import {Text, View} from 'react-native';
 import styles from './accordion.style';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Accordion extends React.Component {
   state = {
     // default is opened if not ok
     toggle: this.props.attentionNeeded === false,
+    usergroup: null,
   };
 
   _toggle = () => {
     const {toggle} = this.state;
     this.setState({toggle: !toggle});
   };
+
+  componentDidMount() {
+    console.log('Props', this.props);
+  }
 
   render() {
     const {toggle} = this.state;
@@ -23,14 +29,33 @@ class Accordion extends React.Component {
       <View>
         <View style={styles.buttonContainer}>
           <Button
-            style={styles.rightButton}
+            style={styles.leftButton}
             block
             success
             onPress={this._toggle}>
             <Text style={styles.headerContentDetailText}>
-              {toggle ? 'Hide' : 'Details'}
+              {toggle ? 'Hide' : 'Show'}
             </Text>
           </Button>
+          {this.props.user === 'User' ? (
+            <Button
+              style={styles.rightButton}
+              block
+              success
+              onPress={() => {
+                this.props.navigation.navigate('TPMForm');
+              }}>
+              <Text style={styles.headerContentDetailText}>Details</Text>
+            </Button>
+          ) : (
+            <Button
+              style={styles.rightButton}
+              block
+              success
+              onPress={this._toggle}>
+              <Text style={styles.headerContentDetailText}>Edit</Text>
+            </Button>
+          )}
         </View>
         <View>
           {defaultChildren}

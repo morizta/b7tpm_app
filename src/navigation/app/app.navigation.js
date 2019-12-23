@@ -9,6 +9,7 @@ import TPMWhiteListStack from './tmpwhitelist';
 import StatusFormStack from './statusform';
 import RoadCostAnalysisStack from './roadcostanalysis';
 import InformasiMesinStack from './informasimesin';
+import InformasiTPMStack from './informasitpm';
 
 const RootScreen = createStackNavigator(
   {
@@ -43,6 +44,10 @@ const RootScreen = createStackNavigator(
     InformasiMesin: {
       screen: InformasiMesinStack,
       name: 'app.screen.informasimesin',
+    },
+    InformasiTPM: {
+      screen: InformasiTPMStack,
+      name: 'app.screen.informasitpm',
     },
   },
   {

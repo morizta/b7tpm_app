@@ -75,7 +75,7 @@ export default StyleSheet.create({
   },
   rightButtonDetail: {
     height: 25,
-    backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise,
     width: 100,
     marginLeft: 25,
     alignSelf: 'center',
@@ -151,17 +151,18 @@ export default StyleSheet.create({
   },
   tableRowText: {
     fontSize: 12,
-    color: '#2a7050',
+    color: Colors.Turtoise, //'#2a7050',
   },
   tableRowValue: {
     fontSize: 12,
   },
   tableRowHeader: {
-    backgroundColor: '#2a7050',
+    // backgroundColor: '#2a7050',
+    backgroundColor: Colors.Turtoise,
     height: 8,
   },
   tableRowHeaderDetail: {
-    backgroundColor: '#d3e0d9',
+    backgroundColor: Colors.Turtoise,
     height: 4,
   },
   tableRowFooter: {
@@ -296,7 +297,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   menuContainerBoxContent: {
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 100,
     alignContent: 'center',
     alignSelf: 'center',

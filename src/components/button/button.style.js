@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     padding: 10,
     width: 100,
-    backgroundColor: Colors.Secondary,
+    backgroundColor: Colors.Turtoise,
   },
   text: {
     textAlign: 'center',

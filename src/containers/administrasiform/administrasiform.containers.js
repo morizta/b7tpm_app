@@ -29,6 +29,7 @@ import {Table, Row} from 'react-native-table-component';
 import NumberFormat from 'react-number-format';
 import {api_endpoint} from '../../../config';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from './administrasiform.style';
 // import {Item} from 'native-base';
@@ -39,56 +40,26 @@ import styles from './administrasiform.style';
  * @extends {React.Component}
  */
 class AdministrasiForm extends React.Component {
-  state = {
-    tableWidth: 168,
-    characterMax: 35,
-    listtpm: [],
-    selecttpm: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableWidth: 168,
+      characterMax: 35,
+      listtpm: [],
+      selecttpm: 0,
+    };
+    this._gotoTPForm = this._gotoTPForm.bind(this);
+  }
 
   componentDidMount() {
-    // axios
-    //   .post(`${api_endpoint}tpmred/get.php`)
-    //   .then(response => {
-    //     console.log(response);
-    //     this.setState({
-    //       listtpm: response.data.data,
-    //     });
-    //     // this._navigateTo('App')
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    // fetch(`${api_endpoint}tpmred/get.php`, {
-    //   method: 'GET',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then(response => response.json())
-    //   .then(responseJson => {
-    //     console.log('Response Json', responseJson);
-    //     this.setState({
-    //       listtpm: responseJson.data,
-    //     });
-    //     // if (responseJson.message === 'User not available') {
-    //     //   Alert.alert('Login failed', 'User not found.');
-    //     // } else {
-    //     //   // this.props.navigation.navigate('Home');
-    //     //   console.log('responseJson', responseJson.data[0]);
-    //     //   AsyncStorage.setItem('auth', JSON.stringify(responseJson.data[0]));
-    //     //   const auth = AsyncStorage.getItem('auth');
-    //     //   console.log('Isi Session Auth', auth);
-    //     //   //save session goto home menu
-    //     // }
-    //     return;
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //     // Alert.alert('Invalid Verification Code', error);
-    //     return;
-    //   });
+    AsyncStorage.getItem('auth').then(value => {
+      const employee = JSON.parse(value);
+      this.setState({group: employee[0].groupname});
+    });
+  }
+
+  _gotoTPForm() {
+    console.log('This');
   }
 
   _onChangeTPM(item) {
@@ -268,7 +239,9 @@ class AdministrasiForm extends React.Component {
                             />
                           </Table>
                         </View>
-                        <Accordion>
+                        <Accordion
+                          user={this.state.group}
+                          goto={this._gotoTPForm}>
                           <View style={styles.tableContainer}>
                             <Table
                               borderStyle={styles.tableBorder}

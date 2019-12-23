@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "postinstall": "jetifier -r"
+    "postinstall": "jetifier -r",
+    "gradlewclean": "cd android && gradlew clean"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.0",
@@ -23,6 +24,8 @@
     "react-native-gesture-handler": "^1.5.1",
     "react-native-html-to-pdf": "^0.8.0",
     "react-native-image-picker": "^1.1.0",
+    "react-native-pdf": "^6.0.1",
+    "react-native-pdf-view": "^0.3.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-scan-barcode": "^3.1.5",
     "react-native-screens": "^1.0.0-alpha.23",

@@ -56,7 +56,7 @@ class Authentication extends React.Component {
     // const logout = this.props.navigation.getParam('param');
     // console.log('Logout', logout);
     AsyncStorage.getItem('auth').then(value => {
-      console.log('value', value);
+      console.log('Isi Sessino', value);
       if (value !== null) {
         this.props.navigation.navigate('App');
       } else {

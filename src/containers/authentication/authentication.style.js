@@ -39,6 +39,7 @@ export default StyleSheet.create({
     // bottom: DeviceInfo.hasNotch() ? 15 : 0,
   },
   wrapper: {
+    marginTop: 75,
     backgroundColor: 'transparent',
     paddingLeft: 25,
     paddingRight: 25,
