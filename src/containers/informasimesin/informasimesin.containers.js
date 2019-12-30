@@ -58,36 +58,36 @@ class InformasiMesin extends React.Component {
   componentDidMount() {
     // this._permissionCamera();
     // let codes = 8992775709085;
-    let data = JSON.stringify({
-      code: 8992775709085,
-    });
-    axios
-      .post(`${api_endpoint}infomesin/getbycode.php`, data)
-      .then(response => {
-        if (response.data.code === 200) {
-          console.log('Found');
-          let result = response.data.data[0];
-          console.log(result);
-          this.setState({
-            id: result.id,
-            nomesin: result.nomesin,
-            noasset: result.noasset,
-            code: result.code,
-            tglmulaioperasi: result.tglmulaioperasi,
-            ruang: result.ruang,
-            createddate: result.createddate,
-            createdby: result.createdby,
-            isexist: true,
-          });
-        } else {
-          this.setState({
-            isexist: false,
-          });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // let data = JSON.stringify({
+    //   code: 8992775709085,
+    // });
+    // axios
+    //   .post(`${api_endpoint}infomesin/getbycode.php`, data)
+    //   .then(response => {
+    //     if (response.data.code === 200) {
+    //       console.log('Found');
+    //       let result = response.data.data[0];
+    //       console.log(result);
+    //       this.setState({
+    //         id: result.id,
+    //         nomesin: result.nomesin,
+    //         noasset: result.noasset,
+    //         code: result.code,
+    //         tglmulaioperasi: result.tglmulaioperasi,
+    //         ruang: result.ruang,
+    //         createddate: result.createddate,
+    //         createdby: result.createdby,
+    //         isexist: true,
+    //       });
+    //     } else {
+    //       this.setState({
+    //         isexist: false,
+    //       });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
   // _permissionCamera = () => {
