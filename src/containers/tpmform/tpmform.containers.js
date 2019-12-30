@@ -138,6 +138,7 @@ class TPMForm extends React.Component {
       createddate: this.state.createddate,
       modifiedby: this.state.modifiedby,
       modifieddate: this.state.modifieddate,
+      // file: this.state.photo,
     });
 
     var api = '';
@@ -154,8 +155,9 @@ class TPMForm extends React.Component {
       api = `${api_endpoint}tpmred/` + action + `.php`;
     }
     console.log('Di Submit', api);
+    const config = {headers: {'Content-Type': 'multipart/form-data'}};
     axios
-      .post(api, data)
+      .post(api, data) //config
       .then(response => {
         console.log(response);
         Alert.alert('Sukses', 'Berhasil Simpan.');
