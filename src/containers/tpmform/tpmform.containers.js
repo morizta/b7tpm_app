@@ -70,11 +70,30 @@ class TPMForm extends React.Component {
     listtpm: [],
     selecttpm: 1,
     photo: null,
+    fileUrl: null,
     isdetail: true,
     enabled: false,
   };
 
   componentDidMount() {
+    // RNFetchBlob.fetch(
+    //   'GET',
+    //   'http://10.48.105.12/B7TPMAPI/apis/tpmred/upload/download.jpg',
+    // )
+    //   // when response status code is 200
+    //   .then(res => {
+    //     // the conversion is done in native code
+    //     let base64Str = res.base64();
+    //     // the following conversions are done in js, it's SYNC
+    //     let text = res.text();
+    //     let json = res.json();
+    //     console.log('Base64', base64Str, '=> text', text, '=> Json', json);
+    //   })
+    //   // Status code is not 200
+    //   .catch((errorMessage, statusCode) => {
+    //     console.log('errorMessage', errorMessage, '=> statusCode', statusCode);
+    //   });
+
     var Id = this.props.navigation.getParam('id');
     var SelectTpm = this.props.navigation.getParam('tpm');
     var segment = this.props.navigation.getParam('segment');
@@ -122,24 +141,46 @@ class TPMForm extends React.Component {
 
   _submit() {
     console.log('Submit', this.state);
-    let data = JSON.stringify({
-      id: this.state.id,
-      nokontrol: this.state.nokontrol,
-      bagianmesin: this.state.bagianmesin,
-      tanggalpemasangan: this.state.tanggalpemasangan,
-      deskripsi: this.state.deskripsi,
-      noworkrequest: this.state.noworkrequest,
-      picfollowup: this.state.picfollowup,
-      duedate: this.state.duedate,
-      dipasangoleh: this.state.dipasangoleh,
-      penanggulangan: this.state.penanggulangan,
-      status: this.state.status,
-      createdby: this.state.createdby,
-      createddate: this.state.createddate,
-      modifiedby: this.state.modifiedby,
-      modifieddate: this.state.modifieddate,
-      // file: this.state.photo,
+    let data = new FormData(); //formdata object
+
+    data.append('id', this.state.id);
+    data.append('nokontrol', this.state.nokontrol);
+    data.append('bagianmesin', this.state.bagianmesin);
+    data.append('tanggalpemasangan', this.state.tanggalpemasangan);
+    data.append('deskripsi', this.state.deskripsi);
+    data.append('noworkrequest', this.state.noworkrequest);
+    data.append('picfollowup', this.state.picfollowup);
+    data.append('duedate', this.state.duedate);
+    data.append('dipasangoleh', this.state.dipasangoleh);
+    data.append('penanggulangan', this.state.penanggulangan);
+    data.append('status', this.state.status);
+    data.append('createdby', this.state.createdby);
+    data.append('createddate', this.state.createddate);
+    data.append('modifiedby', this.state.modifiedby);
+    data.append('modifieddate', this.state.modifieddate);
+    data.append('file', {
+      uri: this.state.photo.uri,
+      name: this.state.photo.fileName,
+      type: this.state.photo.type,
     });
+    // let data = {
+    //   id: this.state.id,
+    //   nokontrol: this.state.nokontrol,
+    //   bagianmesin: this.state.bagianmesin,
+    //   tanggalpemasangan: this.state.tanggalpemasangan,
+    //   deskripsi: this.state.deskripsi,
+    //   noworkrequest: this.state.noworkrequest,
+    //   picfollowup: this.state.picfollowup,
+    //   duedate: this.state.duedate,
+    //   dipasangoleh: this.state.dipasangoleh,
+    //   penanggulangan: this.state.penanggulangan,
+    //   status: this.state.status,
+    //   createdby: this.state.createdby,
+    //   createddate: this.state.createddate,
+    //   modifiedby: this.state.modifiedby,
+    //   modifieddate: this.state.modifieddate,
+    //   file: this.state.photo,
+    // };
 
     var api = '';
     var action = '';
@@ -155,13 +196,19 @@ class TPMForm extends React.Component {
       api = `${api_endpoint}tpmred/` + action + `.php`;
     }
     console.log('Di Submit', api);
-    const config = {headers: {'Content-Type': 'multipart/form-data'}};
+    const config = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
     axios
-      .post(api, data) //config
+      .post(api, data, config)
       .then(response => {
         console.log(response);
         Alert.alert('Sukses', 'Berhasil Simpan.');
-        this.props.navigation.navigate('Home');
+        // this.props.navigation.navigate('Home');
       })
       .catch(err => {
         console.log(err);
@@ -304,7 +351,7 @@ class TPMForm extends React.Component {
     //   Shift
     // } = this.props.data
     console.log('This State', this.state);
-    const {photo} = this.state;
+    const {photo, fileUrl} = this.state;
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="#2a7050" barStyle="light-content" />
@@ -414,10 +461,12 @@ class TPMForm extends React.Component {
                   height: 250,
                   padding: 7.5,
                 }}>
-                {photo ? (
+                {photo || fileUrl ? (
                   <TouchableOpacity>
                     <Image
-                      source={{uri: photo.uri}}
+                      source={{
+                        uri: photo ? photo.uri : `${api_endpoint}` + fileUrl,
+                      }}
                       style={{
                         width: 230,
                         height: 230,

@@ -53,13 +53,14 @@ class InformasiMesin extends React.Component {
     infomesin: [],
     enabled: false,
     isexist: false,
+    editmode: false,
   };
 
   componentDidMount() {
     // this._permissionCamera();
-    // let codes = 8992775709085;
+    // let codes = 12512525152125;
     // let data = JSON.stringify({
-    //   code: 8992775709085,
+    //   code: codes,
     // });
     // axios
     //   .post(`${api_endpoint}infomesin/getbycode.php`, data)
@@ -82,6 +83,7 @@ class InformasiMesin extends React.Component {
     //     } else {
     //       this.setState({
     //         isexist: false,
+    //         code: codes,
     //       });
     //     }
     //   })
@@ -90,30 +92,33 @@ class InformasiMesin extends React.Component {
     //   });
   }
 
-  // _permissionCamera = () => {
-  //   //Checking for the permission just after component loaded
-  //   async function requestStoragePerm() {
-  //     //Calling the permission function
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.CAMERA,
-  //       {
-  //         title: 'B7TPM App Camera Permission',
-  //         message: 'B7TPM App needs access to your access your Camera ',
-  //         buttonNeutral: 'Ask Me Later',
-  //         buttonNegative: 'Cancel',
-  //         buttonPositive: 'OK',
-  //       },
-  //     );
-  //     if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
-  //       Alert.alert('CAMERA Permission Denied.', '');
-  //       this.props.navigation.navigate('Home');
-  //     }
-  //   }
-  //   if (Platform.OS === 'android') {
-  //     requestStoragePerm();
-  //   }
-  // };
+  _permissionCamera = () => {
+    //Checking for the permission just after component loaded
+    async function requestStoragePerm() {
+      //Calling the permission function
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'B7TPM App Camera Permission',
+          message: 'B7TPM App needs access to your access your Camera ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+        Alert.alert('CAMERA Permission Denied.', '');
+        this.props.navigation.navigate('Home');
+      }
+    }
+    if (Platform.OS === 'android') {
+      requestStoragePerm();
+    }
+  };
 
+  _submit() {
+    console.log('Submit', this.state);
+  }
   _onScan(value) {
     // console.log('Code', value.nativeEvent.codeStringValue);
 
@@ -171,11 +176,25 @@ class InformasiMesin extends React.Component {
                   value={this.state.ruang}
                   onChangeText={text => this.setState({ruang: text})}
                 />
+                <View>
+                  {!this.state.isexist ? (
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        color: 'grey',
+                      }}>
+                      Tidak ditemukan data mesin untuk barcode no.{'\n'}
+                      {this.state.code}
+                    </Text>
+                  ) : (
+                    <Text />
+                  )}
+                </View>
                 <View
                   style={{
                     flexDirection: 'row',
-                    justifyContent: 'center',
-                    marginTop: 50,
+                    justifyContent: 'space-between',
+                    marginTop: 25,
                   }}>
                   <Button
                     title="Scan Barcode"
@@ -185,18 +204,24 @@ class InformasiMesin extends React.Component {
                     onPress={() => this.setState({code: null})}
                     //loading={this.state.enableLogin}
                   />
-                  {/* {!this.state.isdetail ? (
+                  {!this.state.isdetail ? (
                     <Button
-                      title="Simpan"
+                      title={
+                        !this.state.editmode
+                          ? 'Tambahkan Data'
+                          : 'Simpan Data Mesin'
+                      }
                       containerStyle={styles.enterOTPButton}
                       textStyle={styles.textButtonSubmit}
-                      // containerStyle={styles.enterButton}
-                      // onPress={() => this._submit()}
-                      //loading={this.state.enableLogin}
+                      onPress={() => {
+                        !this.state.editmode
+                          ? this.setState({editmode: true, enabled: true})
+                          : this._submit();
+                      }}
                     />
                   ) : (
                     <View />
-                  )} */}
+                  )}
                 </View>
               </Content>
             </ScrollView>
