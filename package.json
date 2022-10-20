@@ -26,7 +26,7 @@
     "react-native-image-picker": "^1.1.0",
     "react-native-pdf": "^6.0.1",
     "react-native-pdf-view": "^0.3.2",
-    "react-native-reanimated": "^1.4.0",
+    "react-native-reanimated": "^2.10.0",
     "react-native-scan-barcode": "^3.1.5",
     "react-native-screens": "^1.0.0-alpha.23",
     "react-native-table-component": "^1.2.1",
